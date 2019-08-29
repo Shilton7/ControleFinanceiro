@@ -1,4 +1,5 @@
 import React from 'react'
+import '../common/template/dependencias'
 
 export default props => (
     <div className='wrapper'>

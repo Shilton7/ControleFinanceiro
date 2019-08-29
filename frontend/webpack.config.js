@@ -22,7 +22,7 @@ module.exports = {
     plugins: [
         new webpack.ProvidePlugin({
             $: 'jquery',
-            JQuery: 'jquery',
+            jQuery: 'jquery',
             'window.jQuery': 'jquery'
         }),
         new ExtractTextPlugin('app.css')
