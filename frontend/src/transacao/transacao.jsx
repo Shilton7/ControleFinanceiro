@@ -10,6 +10,7 @@ import TabsHeader from '../common/tab/tabsHeader'
 import TabHeader from '../common/tab/tabHeader'
 import TabContent from  '../common/tab/tabContent'
 import { selectTab, showTabs } from '../common/tab/tabActions'
+import TransacaoList from './transacaoList'
 
 class Transacao extends Component {
 
@@ -31,7 +32,10 @@ class Transacao extends Component {
                             <TabHeader target='tabDelete' icon='trash-o' label='Excluir' />
                         </TabsHeader>
                         <TabsContent>
-                            <TabContent id='tabListar'> <h2>Listar</h2></TabContent>
+                            <TabContent id='tabListar'>
+                                <TransacaoList/>
+                            </TabContent>
+                            
                             <TabContent id='tabCreate'> <h2>Incluir</h2></TabContent>
                             <TabContent id='tabUpdate'> <h2>Alterar</h2></TabContent>
                             <TabContent id='tabDelete'> <h2>Excluir</h2></TabContent>
