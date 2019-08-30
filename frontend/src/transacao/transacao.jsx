@@ -9,12 +9,13 @@ import TabsContent from '../common/tab/tabsContent'
 import TabsHeader from '../common/tab/tabsHeader'
 import TabHeader from '../common/tab/tabHeader'
 import TabContent from  '../common/tab/tabContent'
-import { selectTab } from '../common/tab/tabActions'
+import { selectTab, showTabs } from '../common/tab/tabActions'
 
 class Transacao extends Component {
 
     componentWillMount(){
         this.props.selectTab('tabListar')
+        this.props.showTabs('tabListar','tabCreate')
     }
 
     render() {
@@ -43,5 +44,5 @@ class Transacao extends Component {
 }
 
 //redux
-const mapDispatchToProps = dispatch => bindActionCreators({ selectTab}, dispatch )
+const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs}, dispatch )
 export default connect(null, mapDispatchToProps)(Transacao)
