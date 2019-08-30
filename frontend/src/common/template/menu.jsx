@@ -4,7 +4,8 @@ import MenuTree from './menuTree'
 
 export default props => (
     <ul className='sidebar-menu'>
-        <MenuItem url='#/' icon='dashboard' label='Dashboard'/>
+        <MenuItem url='#/dashboardredux' icon='dashboard' label='Dashboard - Redux'/>
+        <MenuItem url='#/dashboardsemredux' icon='dashboard' label='Dashboard Sem Redux' />
 
         <MenuTree label='Cadastro' icon='edit'>
             <MenuItem url='#/transacao' label='Transações' icon='usd'/> 

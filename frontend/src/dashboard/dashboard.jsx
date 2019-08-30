@@ -21,7 +21,7 @@ class Dashboard extends Component {
 
         return (
             <div>
-                <ContentHeader titulo='Dashboard' small='Versão Desenvolvimento'/>
+                <ContentHeader titulo='Dashboard com Redux' small='Versão Desenvolvimento'/>
                 <Content>
 
                     <Row>
