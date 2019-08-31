@@ -9,3 +9,10 @@ export function listaTransacao() {
         payload: req
     }
 }
+
+export function criar(valores) {
+    axios.post(`${base_url}/transacao`, valores)
+    return {
+        type: 'salvar_transacao'
+        }
+}

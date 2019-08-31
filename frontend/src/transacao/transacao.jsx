@@ -11,6 +11,8 @@ import TabHeader from '../common/tab/tabHeader'
 import TabContent from  '../common/tab/tabContent'
 import { selectTab, showTabs } from '../common/tab/tabActions'
 import TransacaoList from './transacaoList'
+import TransacaoForm from './transacaoForm'
+import {criar} from './transacaoActions'
 
 class Transacao extends Component {
 
@@ -36,7 +38,9 @@ class Transacao extends Component {
                                 <TransacaoList/>
                             </TabContent>
                             
-                            <TabContent id='tabCreate'> <h2>Incluir</h2></TabContent>
+                            <TabContent id='tabCreate'>
+                                <TransacaoForm onSubmit={this.props.criar}></TransacaoForm>
+                            </TabContent>
                             <TabContent id='tabUpdate'> <h2>Alterar</h2></TabContent>
                             <TabContent id='tabDelete'> <h2>Excluir</h2></TabContent>
                         </TabsContent>
@@ -48,5 +52,7 @@ class Transacao extends Component {
 }
 
 //redux
-const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs}, dispatch )
+const mapDispatchToProps = dispatch => bindActionCreators({ 
+    selectTab, showTabs, criar
+    }, dispatch )
 export default connect(null, mapDispatchToProps)(Transacao)
