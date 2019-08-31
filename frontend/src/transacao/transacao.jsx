@@ -9,16 +9,14 @@ import TabsContent from '../common/tab/tabsContent'
 import TabsHeader from '../common/tab/tabsHeader'
 import TabHeader from '../common/tab/tabHeader'
 import TabContent from  '../common/tab/tabContent'
-import { selectTab, showTabs } from '../common/tab/tabActions'
 import TransacaoList from './transacaoList'
 import TransacaoForm from './transacaoForm'
-import { criar, atualizar, deletar } from './transacaoActions'
+import { inicial, criar, atualizar, deletar } from './transacaoActions'
 
 class Transacao extends Component {
 
     componentWillMount(){
-        this.props.selectTab('tabListar')
-        this.props.showTabs('tabListar','tabCreate')
+        this.props.inicial()
     }
 
     render() {
@@ -60,6 +58,6 @@ class Transacao extends Component {
 
 //redux
 const mapDispatchToProps = dispatch => bindActionCreators({ 
-    selectTab, showTabs, criar, atualizar, deletar
+    inicial, criar, atualizar, deletar
     }, dispatch )
 export default connect(null, mapDispatchToProps)(Transacao)
