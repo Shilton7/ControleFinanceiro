@@ -5,12 +5,12 @@ import { bindActionCreators } from 'redux'
 
 import LabelInput from '../common/form/label_input'
 import { inicial } from './transacaoActions'
-import CreditoLista from './CreditoLista'
+import ItemLista from './ItemLista'
 
 class TransacaoForm extends Component {
     render(){
 
-        const {handleSubmit, readOnly, credito } = this.props
+        const {handleSubmit, readOnly, credito, debito } = this.props
 
         return (
             
@@ -28,7 +28,11 @@ class TransacaoForm extends Component {
                         readOnly={readOnly}
                         label='Ano' placeholder='Informe o ano' type='text' />
 
-                    <CreditoLista cols='12 6' readOnly={readOnly} list={credito} />
+                    <ItemLista cols='12 6' readOnly={readOnly} 
+                    list={credito}  field='credito' legend='Créditos'/>
+
+                    <ItemLista cols='12 6' readOnly={readOnly} status={true}
+                        list={debito} field='debito' legend='Débitos' />
 
                 </div>
 
@@ -52,7 +56,8 @@ class TransacaoForm extends Component {
 TransacaoForm = reduxForm({ form: 'TransacaoForm', destroyOnUnmount: false })(TransacaoForm)
 const selector = formValueSelector('TransacaoForm')
 const mapStateToProps = state => ({
-  credito: selector(state, 'credito')
+  credito: selector(state, 'credito'),
+  debito: selector(state, 'debito')
 });
 const mapDispatchToProps = dispatch => bindActionCreators({inicial}, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(TransacaoForm)
