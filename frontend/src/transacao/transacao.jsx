@@ -12,7 +12,7 @@ import TabContent from  '../common/tab/tabContent'
 import { selectTab, showTabs } from '../common/tab/tabActions'
 import TransacaoList from './transacaoList'
 import TransacaoForm from './transacaoForm'
-import {criar} from './transacaoActions'
+import { criar, atualizar, deletar } from './transacaoActions'
 
 class Transacao extends Component {
 
@@ -39,12 +39,17 @@ class Transacao extends Component {
                             </TabContent>
                             
                             <TabContent id='tabCreate'>
-                                <TransacaoForm onSubmit={this.props.criar}></TransacaoForm>
+                                <TransacaoForm btn_class='success' btn_label='Salvar'
+                                               onSubmit={this.props.criar}></TransacaoForm>
                             </TabContent>
                             <TabContent id='tabUpdate'>
-                                <TransacaoForm onSubmit={this.props.salvarAlteracao}></TransacaoForm>
+                                <TransacaoForm btn_class='warning' btn_label='Salvar alteração' 
+                                               onSubmit={this.props.atualizar}></TransacaoForm>
                             </TabContent>
-                            <TabContent id='tabDelete'> <h2>Excluir</h2></TabContent>
+                            <TabContent id='tabDelete'>
+                                <TransacaoForm readOnly={true} btn_class='danger' btn_label='Deletar'
+                                               onSubmit={this.props.deletar}></TransacaoForm>
+                            </TabContent>
                         </TabsContent>
                     </Tabs>
                 </Content>
@@ -55,6 +60,6 @@ class Transacao extends Component {
 
 //redux
 const mapDispatchToProps = dispatch => bindActionCreators({ 
-    selectTab, showTabs, criar
+    selectTab, showTabs, criar, atualizar, deletar
     }, dispatch )
 export default connect(null, mapDispatchToProps)(Transacao)

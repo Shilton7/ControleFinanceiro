@@ -4,8 +4,16 @@ import { reset as resetForm, initialize } from 'redux-form'
 import { showTabs, selectTab } from '../common/tab/tabActions'
 
 const base_url = 'http://localhost:3003/api/v1'
+const initial_values = {}
 
-
+export function inicial() {
+    return [
+        showTabs('tabListar', 'tabCreate'),
+        selectTab('tabListar'),
+        listaTransacao(),
+        initialize('TransacaoForm', initial_values )
+    ]
+}
 
 export function listaTransacao() {
     const req = axios.get(`${base_url}/transacao`)
@@ -15,28 +23,7 @@ export function listaTransacao() {
     }
 }
 
-export function criar(valores) {
-    return dispatch => {
-        axios.post(`${base_url}/transacao`, valores)
-            .then(res => {
-                toastr.success('Sucesso', 'Salvo com sucesso!')
-                dispatch([
-                    resetForm('TransacaoForm'),
-                    listaTransacao(),
-                    selectTab('tabListar'),
-                    showTabs('tabListar','tabCreate')
-
-                ])
-            })
-            .catch(e => {
-                e.response.data.errors.forEach(error => toastr.error('Erro', error))
-            })
-
-    } 
-}
-
-export function atualizar(transacao){
-    console.log(transacao)
+export function detalhesTransacao(transacao) {
     return [
         showTabs('tabUpdate'),
         selectTab('tabUpdate'),
@@ -44,6 +31,42 @@ export function atualizar(transacao){
     ]
 }
 
-export function salvarAlteracao(){
+export function detalhesDelete(transacao) {
+    return [
+        showTabs('tabDelete'),
+        selectTab('tabDelete'),
+        initialize('TransacaoForm', transacao)
+    ]
+}
 
+export function criar(valores) {
+    return submit(valores,'post')
+}
+
+export function atualizar(valores) {
+    return submit(valores, 'put')
+}
+
+export function deletar(valores) {
+    return submit(valores, 'delete')
+}
+
+function submit(valores, method) {
+
+    const id = valores._id ? valores._id : ''
+
+    return dispatch => {
+
+        axios[method](`${base_url}/transacao/${id}`, valores)
+            .then(res => {
+                toastr.success('Sucesso', 'Realizado com sucesso!')
+                dispatch([
+                    resetForm('TransacaoForm'),
+                    dispatch(inicial())
+                ])
+            })
+            .catch(e => {
+                e.response.data.errors.forEach(error => toastr.error('Erro', error))
+            })
+    }
 }
