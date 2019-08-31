@@ -15,7 +15,8 @@ class TransacaoForm extends Component {
 
                 </div>
                 <div className='box-footer'>
-                    <button type='submit' className='btn btn-primary'>Salvar</button>
+                    <button type='reset' className='btn btn-primary'>Limpar</button>
+                    <button type='submit' className='btn btn-success'>Salvar</button>
                 </div>
             </form>
         )
