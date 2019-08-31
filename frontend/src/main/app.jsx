@@ -3,7 +3,6 @@ import '../common/template/dependencias'
 import Header from '../common/template/header'
 import Sidebar from '../common/template/sidebar'
 import Footer from '../common/template/footer'
-import Routes from './routes'
 import Mensagens from '../common/msg/mensagens'
 
 export default props => (
@@ -12,7 +11,7 @@ export default props => (
         <Sidebar/>
         <Mensagens />
         <div className='content-wrapper'>
-            <Routes/>
+            {props.children}
         </div>
         <Footer/>
     </div>
