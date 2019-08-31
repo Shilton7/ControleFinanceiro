@@ -45,17 +45,17 @@ class ItemLista extends Component {
                 </If>
 
                 <td>
-                    <button type='button' className='btn btn-success'
+                    <button type='button' className='btn btn-success btn-xs'
                     onClick={() => this.addLinha(index+1)}>
                         <i className='fa fa-plus'></i>
                     </button>
 
-                    <button type='button' className='btn btn-warning'
+                    <button type='button' className='btn btn-warning btn-xs'
                         onClick={() => this.addLinha(index + 1, item)}>
                         <i className='fa fa-clone'></i>
                     </button>
 
-                    <button type='button' className='btn btn-danger'
+                    <button type='button' className='btn btn-danger btn-xs'
                         onClick={() => this.deletarLinha(index)}>
                         <i className='fa fa-trash'></i>
                     </button>

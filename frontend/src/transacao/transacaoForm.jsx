@@ -6,11 +6,22 @@ import { bindActionCreators } from 'redux'
 import LabelInput from '../common/form/label_input'
 import { inicial } from './transacaoActions'
 import ItemLista from './ItemLista'
+import  Sumario from './sumario'
 
 class TransacaoForm extends Component {
+
+    calcuandoSumario(){
+        const soma = (total, valorAtual) => total + valorAtual
+        return {
+            somaCredito: this.props.credito.map(credito => +credito.valor || 0).reduce(soma),
+            somaDebito: this.props.debito.map(debito => +debito.valor || 0).reduce(soma)
+
+        }
+    }
     render(){
 
         const {handleSubmit, readOnly, credito, debito } = this.props
+        const { somaCredito, somaDebito } = this.calcuandoSumario()
 
         return (
             
@@ -28,6 +39,8 @@ class TransacaoForm extends Component {
                         readOnly={readOnly}
                         label='Ano' placeholder='Informe o ano' type='text' />
 
+                    <Sumario credito={somaCredito} debito={somaDebito}></Sumario>
+                    
                     <ItemLista cols='12 6' readOnly={readOnly} 
                     list={credito}  field='credito' legend='Créditos'/>
 
