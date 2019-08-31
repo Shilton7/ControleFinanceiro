@@ -1,9 +1,11 @@
 import axios from 'axios'
 import { toastr } from 'react-redux-toastr'
-import { reset as resetForm } from 'redux-form'
+import { reset as resetForm, initialize } from 'redux-form'
 import { showTabs, selectTab } from '../common/tab/tabActions'
 
 const base_url = 'http://localhost:3003/api/v1'
+
+
 
 export function listaTransacao() {
     const req = axios.get(`${base_url}/transacao`)
@@ -30,7 +32,18 @@ export function criar(valores) {
                 e.response.data.errors.forEach(error => toastr.error('Erro', error))
             })
 
-    }
-    
-        
+    } 
+}
+
+export function atualizar(transacao){
+    console.log(transacao)
+    return [
+        showTabs('tabUpdate'),
+        selectTab('tabUpdate'),
+        initialize('TransacaoForm', transacao)
+    ]
+}
+
+export function salvarAlteracao(){
+
 }

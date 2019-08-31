@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { listaTransacao } from './transacaoActions'
-
-import ContentHeader from '../common/template/contentHeader'
-import Content from '../common/template/content'
+import { listaTransacao, atualizar } from './transacaoActions'
 
 class TransacaoList extends Component {
 
@@ -19,12 +16,17 @@ class TransacaoList extends Component {
                 <td>{dados.nome}</td>
                 <td>{dados.mes}</td>
                 <td>{dados.ano}</td>
+                <td>
+                    <button className='btn btn-warning' onClick={() => this.props.atualizar(dados)}>
+                        <i className='fa fa-pencil'></i>
+                    </button>
+                </td>
             </tr>
         ))
     }
 
     render() {
-        console.log(this.props.list)
+        //console.log(this.props.list)
         return (
             <div>
                 <table className='table'>
@@ -48,5 +50,5 @@ class TransacaoList extends Component {
 
 //redux
 const mapStateToProps = state => ({ list: state.transacao.list })
-const mapDispatchToProps = dispatch => bindActionCreators({ listaTransacao }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({listaTransacao, atualizar}, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(TransacaoList)

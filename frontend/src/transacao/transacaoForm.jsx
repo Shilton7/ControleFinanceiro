@@ -27,5 +27,5 @@ class TransacaoForm extends Component {
         )
     }
 }
-
-export default reduxForm({ form: 'TransacaoForm' })(TransacaoForm)
+// usando destroyOnUnmount para não destruir o formulário com os dados no momento de editar
+export default reduxForm({ form: 'TransacaoForm', destroyOnUnmount: false })(TransacaoForm)

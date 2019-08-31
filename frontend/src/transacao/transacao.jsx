@@ -41,7 +41,9 @@ class Transacao extends Component {
                             <TabContent id='tabCreate'>
                                 <TransacaoForm onSubmit={this.props.criar}></TransacaoForm>
                             </TabContent>
-                            <TabContent id='tabUpdate'> <h2>Alterar</h2></TabContent>
+                            <TabContent id='tabUpdate'>
+                                <TransacaoForm onSubmit={this.props.salvarAlteracao}></TransacaoForm>
+                            </TabContent>
                             <TabContent id='tabDelete'> <h2>Excluir</h2></TabContent>
                         </TabsContent>
                     </Tabs>
